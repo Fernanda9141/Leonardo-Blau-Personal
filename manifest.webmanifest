@@ -1,0 +1,22 @@
+{
+  "name": "Leonardo Blau - Personal Trainer",
+  "short_name": "LeoBlau",
+  "description": "Site oficial do Personal Trainer Leonardo Blau: consultoria online, postura e treinos personalizados.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#050608",
+  "theme_color": "#c8ff32",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

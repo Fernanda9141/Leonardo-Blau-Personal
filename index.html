@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Leonardo Blau | Personal Trainer & Consultoria Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #050608;
+      --bg-card: #111217;
+      --bg-card-soft: #171821;
+      --accent: #c8ff32;
+      --accent-soft: #90c921;
+      --text-main: #f5f5f5;
+      --text-muted: #9ea2b0;
+      --border-soft: #242633;
+      --danger: #ff4e4e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #181c27 0, #050608 55%, #020305 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ===== HEADER ===== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(5, 6, 8, 0.96), rgba(5, 6, 8, 0.4));
+      border-bottom: 1px solid rgba(200, 255, 50, 0.2);
+    }
+
+    .nav-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .logo-text-main span {
+      color: var(--accent);
+    }
+
+    .logo-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+    }
+
+    nav a {
+      position: relative;
+      color: var(--text-muted);
+      padding-bottom: 2px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.18s ease-out;
+    }
+
+    nav a:hover {
+      color: var(--text-main);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .btn-nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #050608;
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      box-shadow: 0 0 24px rgba(200, 255, 50, 0.35);
+      white-space: nowrap;
+    }
+
+    .btn-nav-cta:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* ===== LAYOUT GERAL ===== */
+
+    .section-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 22px 18px 26px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(200, 255, 50, 0.4);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(200, 255, 50, 0.9);
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    /* ===== HERO ===== */
+
+    .hero {
+      padding-top: 26px;
+      padding-bottom: 12px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 26px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1.14;
+      margin: 10px 0 8px;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      max-width: 440px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #050608;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba(200, 255, 50, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.1rem;
+    }
+
+    .btn-ghost {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(12, 12, 18, 0.7);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-badge strong {
+      color: var(--accent);
+      font-size: 0.86rem;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #242834 0, #12141b 55%, #080910 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(200, 255, 50, 0.25);
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top, rgba(200, 255, 50, 0.22), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(143, 201, 33, 0.2), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .hero-person-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid var(--accent);
+      background: #000;
+      flex-shrink: 0;
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-person-info h3 {
+      font-size: 0.95rem;
+    }
+
+    .hero-person-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.75rem;
+    }
+
+    .hero-tag {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(200, 255, 50, 0.4);
+      background: rgba(5, 6, 8, 0.9);
+    }
+
+    .hero-metric-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    .metric {
+      flex: 1;
+      background: rgba(5, 6, 8, 0.7);
+      border-radius: 10px;
+      padding: 8px 9px;
+      border: 1px solid rgba(63, 72, 99, 0.9);
+    }
+
+    .metric strong {
+      font-size: 0.9rem;
+    }
+
+    .metric span {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* ===== SEÇÕES ===== */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    .card-dark {
+      border-radius: 16px;
+      background: radial-gradient(circle at top, #191b25 0, #0c0d13 55%, #050608 100%);
+      border: 1px solid var(--border-soft);
+      padding: 16px 16px 14px;
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.8);
+    }
+
+    .card-dark h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .card-dark p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .posture-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 6px;
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
+    .posture-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .marker-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(200, 255, 50, 0.9);
+    }
+
+    .checklist-box {
+      margin-top: 10px;
+      border-radius: 14px;
+      background: rgba(8, 9, 14, 0.95);
+      border: 1px solid var(--border-soft);
+      padding: 10px 12px;
+    }
+
+    .checklist-box h4 {
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    .checklist-list {
+      list-style: none;
+      display: grid;
+      gap: 4px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .checklist-list li::before {
+      content: "✔";
+      color: var(--accent);
+      margin-right: 6px;
+      font-size: 0.85rem;
+    }
+
+    .results-grid {
+      margin-top: 10px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .result-card {
+      border-radius: 14px;
+      background: linear-gradient(145deg, #161721, #090a10);
+      border: 1px solid var(--border-soft);
+      padding: 10px 11px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .result-card strong {
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    /* ===== PLANOS ===== */
+
+    .plans-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .plan-card {
+      background: linear-gradient(145deg, #111217, #090a10);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.8);
+    }
+
+    .plan-card.featured {
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 18px rgba(200,255,50,0.4);
+    }
+
+    .plan-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .plan-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .plan-list {
+      list-style: none;
+      color: var(--text-muted);
+      display: grid;
+      gap: 4px;
+      margin-bottom: 14px;
+      font-size: 0.86rem;
+    }
+
+    .plan-list li::before {
+      content: "✔ ";
+      color: var(--accent);
+      margin-right: 2px;
+    }
+
+    .plan-price {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .plan-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #050608;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(200,255,50,0.4);
+      font-size: 0.9rem;
+    }
+
+    .plan-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    /* ===== CONTATO / FOOTER ===== */
+
+    .contact-row {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.88rem;
+    }
+
+    .contact-row p {
+      color: var(--text-muted);
+    }
+
+    .contact-highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 16px 18px 22px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      border-top: 1px solid #111217;
+      margin-top: 8px;
+    }
+
+    footer span {
+      color: var(--accent-soft);
+    }
+
+    /* ===== WHATSAPP FLOAT ===== */
+
+    .whatsapp-float {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 30;
+    }
+
+    .whatsapp-float a {
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 24px rgba(37, 211, 102, 0.7);
+      color: #050608;
+      font-size: 1.8rem;
+    }
+
+    .whatsapp-float a:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* ===== RESPONSIVO ===== */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-card {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+      .nav-shell {
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      nav ul {
+        display: none;
+      }
+      .section-shell {
+        padding-inline: 16px;
+      }
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      .section-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÃO WHATSAPP -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/55SEUNUMERO" target="_blank" aria-label="Falar com Leonardo no WhatsApp">
+      💬
+    </a>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-shell">
+      <div class="logo-row">
+        <div class="logo-mark">LB</div>
+        <div>
+          <div class="logo-text-main">LEONARDO <span>BLAU</span></div>
+          <div class="logo-sub">Personal Trainer & Consultoria Online</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#avaliacao">Avaliação postural</a></li>
+          <li><a href="#servicos">Planos</a></li>
+          <li><a href="#resultados">Resultados</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <button class="btn-nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'});">
+        QUERO COMEÇAR
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="section-shell hero">
+    <div class="hero-grid">
+      <div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          transformação real • treino inteligente
+        </div>
+        <h1 class="hero-title">
+          Transforme seus <span>resultados</span> com um acompanhamento
+          100% online e personalizado.
+        </h1>
+        <p class="hero-sub">
+          Treinos planejados para a sua rotina, foco em postura, saúde e evolução constante.
+          Nada de planilha genérica: aqui cada aluno é acompanhado de perto.
+        </p>
+
+        <div class="hero-cta-row">
+          <button class="btn-primary" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'});">
+            <span class="icon">⬤</span>
+            Quero falar com o Leo
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('avaliacao').scrollIntoView({behavior:'smooth'});">
+            Ver avaliação postural
+          </button>
+        </div>
+
+        <div class="hero-badges">
+          <div class="hero-badge">
+            <strong>+ resultados</strong> em menos tempo
+          </div>
+          <div class="hero-badge">
+            Foco em <strong>postura, saúde e performance</strong>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-inner">
+          <div class="hero-person-row">
+            <div class="hero-avatar">
+              <!-- Troque "leonardo.jpg" pelo nome da foto dele -->
+              <img src="leonardo.jpg" alt="Leonardo Blau">
+            </div>
+            <div class="hero-person-info">
+              <h3>Leonardo Blau</h3>
+              <p>Personal Trainer • Consultoria Online • Avaliação Postural</p>
+            </div>
+          </div>
+          <div class="hero-tags">
+            <span class="hero-tag">Emagrecimento saudável</span>
+            <span class="hero-tag">Hipertrofia</span>
+            <span class="hero-tag">Correção postural</span>
+            <span class="hero-tag">Treino em casa ou academia</span>
+          </div>
+          <div class="hero-metric-row">
+            <div class="metric">
+              <strong>+ disciplina</strong>
+              <span>Você não treina mais sozinho: tem alguém cobrando e ajustando o caminho.</span>
+            </div>
+            <div class="metric">
+              <strong>+ segurança</strong>
+              <span>Postura corrigida, execução guiada e menos risco de lesão.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÃO + CHECKLIST -->
+  <section class="section-shell" id="avaliacao">
+    <div class="two-col">
+      <div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          avaliação postural
+        </div>
+        <h2 class="section-title">
+          Muito além da estética: <span>é saúde</span>.
+        </h2>
+        <p class="section-sub">
+          A avaliação postural identifica desalinhamentos que podem gerar dores, compensações
+          e limitar seus resultados. A partir dela, o treino é ajustado para o seu corpo real.
+        </p>
+
+        <div class="card-dark" style="margin-top: 12px;">
+          <h3>O que é analisado?</h3>
+          <ul class="posture-list">
+            <li><span class="marker-dot"></span>Cabeça e cervical</li>
+            <li><span class="marker-dot"></span>Ombros e cintura escapular</li>
+            <li><span class="marker-dot"></span>Coluna torácica e lombar</li>
+            <li><span class="marker-dot"></span>Quadris e pelve</li>
+            <li><span class="marker-dot"></span>Joelhos e tornozelos</li>
+          </ul>
+          <p style="margin-top: 8px;">
+            Tudo isso é traduzido em ajustes no treino, seleção de exercícios e orientações
+            para o dia a dia.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="card-dark">
+          <h3>Checklist para um excelente treino</h3>
+          <p>
+            Treinar bem vai muito além de “pegar pesado”. Antes de começar, confira este checklist:
+          </p>
+          <div class="checklist-box">
+            <h4>Antes e durante o treino:</h4>
+            <ul class="checklist-list">
+              <li>Alongamento e aquecimento adequados</li>
+              <li>Disciplina em seguir o plano</li>
+              <li>Foco total no treino (sem distrações)</li>
+              <li>Hidratação constante</li>
+              <li>Respeitar o ritmo e progressão</li>
+              <li>Ter um personal para orientar e corrigir</li>
+            </ul>
+          </div>
+          <p style="margin-top: 8px;">
+            Esses pontos, somados a um planejamento individualizado, fazem a diferença entre
+            apenas “cansar” e realmente <strong>evoluir</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS / SERVIÇOS -->
+  <section class="section-shell" id="servicos">
+    <div class="pill">
+      <span class="pill-dot"></span>
+      planos & serviços
+    </div>
+    <h2 class="section-title">
+      Como o <span>Leonardo</span> pode te ajudar.
+    </h2>
+    <p class="section-sub">
+      Escolha o formato que mais faz sentido para a sua rotina. Todos os planos incluem acompanhamento
+      próximo, ajustes de treino e contato direto com o Leo.
+    </p>
+
+    <div class="plans-grid">
+
+      <!-- PLANO PRESENCIAL -->
+      <div class="plan-card">
+        <h3>💎 Personal Presencial</h3>
+        <p class="plan-sub">
+          Sessões presenciais em academia, com correção em tempo real, evolução constante e foco total no treino.
+        </p>
+
+        <ul class="plan-list">
+          <li>Correção de postura em tempo real</li>
+          <li>Execução guiada de cada exercício</li>
+          <li>Evolução segura e acelerada</li>
+          <li>Foco 100% no aluno</li>
+        </ul>
+
+        <div class="plan-price">Valor sob consulta</div>
+
+        <button class="plan-btn"
+          onclick="window.open('https://wa.me/5551999201037?text=Ol%C3%A1%20Leo!%20Tenho%20interesse%20no%20personal%20presencial.%20Quero%20treinar%20com%20mais%20foco%2C%20disciplina%20e%20intensidade%20para%20conquistar%20resultados%20de%20verdade.%20Pode%20me%20passar%20as%20informa%C3%A7%C3%B5es%3F','_blank')">
+          Quero treinar presencial
+        </button>
+      </div>
+
+      <!-- CONSULTORIA ONLINE -->
+      <div class="plan-card featured">
+        <h3>🔥 Consultoria Online</h3>
+        <p class="plan-sub">
+          Treino 100% personalizado para a sua rotina, com ajustes semanais e acompanhamento direto pelo WhatsApp.
+        </p>
+
+        <ul class="plan-list">
+          <li>Treino individualizado (casa ou academia)</li>
+          <li>Ajustes semanais conforme sua evolução</li>
+          <li>Acompanhamento e feedback pelo WhatsApp</li>
+          <li>Avaliação postural incluída</li>
+        </ul>
+
+        <div class="plan-price">R$ 50,00/aula</div>
+
+        <button class="plan-btn"
+          onclick="window.open('https://wa.me/5551999201037?text=Ol%C3%A1%20Leo!%20Quero%20come%C3%A7ar%20a%20consultoria%20online.%20Sinto%20que%20est%C3%A1%20na%20hora%20de%20elevar%20meu%20treino%20a%20outro%20n%C3%ADvel%20e%20transformar%20minha%20rotina.%20Qual%20%C3%A9%20o%20pr%C3%B3ximo%20passo%3F','_blank')">
+          Quero consultoria online
+        </button>
+      </div>
+
+      <!-- AVALIAÇÃO POSTURAL -->
+      <div class="plan-card">
+        <h3>🟩 Avaliação Postural</h3>
+        <p class="plan-sub">
+          Análise completa da sua postura para corrigir dores, melhorar a execução e potencializar os resultados.
+        </p>
+
+        <ul class="plan-list">
+          <li>Identificação de desalinhamentos</li>
+          <li>Relatório simples e direto</li>
+          <li>Exercícios de correção específicos</li>
+          <li>Ajustes aplicados ao seu treino</li>
+        </ul>
+
+        <div class="plan-price">R$ 20,00/consulta</div>
+
+        <button class="plan-btn"
+          onclick="window.open('https://wa.me/5551999201037?text=Ol%C3%A1%20Leo!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20postural.%20Quero%20treinar%20sem%20dores%20e%20desbloquear%20meu%20verdadeiro%20potencial.%20Como%20funciona%3F','_blank')">
+          Quero avaliação
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section-shell" id="resultados">
+    <div class="pill">
+      <span class="pill-dot"></span>
+      resultados & evolução
+    </div>
+    <h2 class="section-title">
+      Não é só sobre <span>estética</span>, é sobre vida real.
+    </h2>
+    <p class="section-sub">
+      O foco é construir uma rotina que você consegue manter, com corpo mais forte, postura melhor
+      e mais qualidade de vida no dia a dia.
+    </p>
+
+    <div class="results-grid">
+      <div class="result-card">
+        <strong>+ energia no dia a dia</strong>
+        <p>
+          Alunos relatam menos fadiga, mais disposição para trabalhar e fazer o que gostam.
+        </p>
+      </div>
+      <div class="result-card">
+        <strong>Dores reduzidas</strong>
+        <p>
+          Com treino bem montado e postura ajustada, aquele incômodo no ombro, lombar ou joelho
+          começa a diminuir.
+        </p>
+      </div>
+      <div class="result-card">
+        <strong>Resultados visíveis</strong>
+        <p>
+          Perda de gordura, ganho de massa e melhora geral no condicionamento — sem soluções mágicas,
+          apenas treino correto e constância.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="section-shell" id="contato">
+    <div class="pill">
+      <span class="pill-dot"></span>
+      contato
+    </div>
+    <h2 class="section-title">
+      Pronto para dar o <span>primeiro passo</span>?
+    </h2>
+    <p class="section-sub">
+      Envie uma mensagem e conte um pouco sobre sua rotina, objetivo e se treina em casa ou academia.
+      O Leonardo responde em até 24h com o próximo passo.
+    </p>
+
+    <div class="contact-row">
+      <button class="btn-primary"
+        onclick="window.open('https://wa.me/5551999201037?text=Ol%C3%A1%20Leo!%20Estou%20pronto(a)%20para%20mudar%20minha%20rotina%2C%20minha%20sa%C3%BAde%20e%20meu%20corpo.%20Quero%20come%C3%A7ar%20hoje%20mesmo.%20Qual%20%C3%A9%20o%20melhor%20plano%20para%20mim%3F','_blank')">
+        Falar com o Leonardo no WhatsApp
+      </button>
+      <p>
+        Ou, se preferir, envie diretamente para o WhatsApp:
+        <span class="contact-highlight">(51) 99920-1037</span>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    © <span>Leonardo Blau</span> — Personal Trainer & Consultoria Online.
+  </footer>
+</body>
+</html>
