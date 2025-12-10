@@ -8,6 +8,7 @@ self.addEventListener("install", (event) => {
         "./icone.png",
         "./icone-192.png",
         "./icone-512.png"
+        "./logo-leo.png"
       ]);
     })
   );
@@ -20,5 +21,6 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+
 
 
